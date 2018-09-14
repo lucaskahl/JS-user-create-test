@@ -222,7 +222,15 @@ class UserController {
 
     addLine(dataUser){
        
-        let tr = document.createElement('tr');
+        let tr = this.getTr(datauser);
+
+        this.tableEl.appendChild(tr);
+
+        this.updateCount();
+    }
+
+    getTr(dataUser, tr = null) {
+        if (tr=== null ) tr = document.createElement('tr');
 
         tr.dataset.user = JSON.stringify(dataUser);
 
@@ -236,13 +244,10 @@ class UserController {
                 <button type="button" class="btn btn-primary btn-edit btn-xs btn-flat">Editar</button>
                 <button type="button" class="btn btn-danger btn-delete btn-xs btn-flat">Excluir</button>
             </td>
-
     `;  
         this.addEventsTr(tr);
+        return tr;
 
-        this.tableEl.appendChild(tr);
-
-        this.updateCount();
     }
 
     addEventsTr(tr) {
